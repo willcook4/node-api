@@ -1,0 +1,31 @@
+{
+  "name": "drinks-api",
+  "version": "1.0.0",
+  "description": "An api built to explore node api testing with chai and mocha",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willcook4/node-api.git"
+  },
+  "author": "Will Cook <nzwillcook@gmail.com> (https://github.com/willcook4)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willcook4/node-api/issues"
+  },
+  "homepage": "https://github.com/willcook4/node-api#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.1.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "config": "^1.21.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.4",
+    "morgan": "^1.7.0"
+  }
+}
