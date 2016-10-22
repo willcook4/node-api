@@ -18,7 +18,7 @@ describe('Fruits', () => {
     });
   });
 
-// Test the Index
+  // Test the Index
   describe('GET /fruits', () => {
     it('it should GET all the fruits', (done) => {
       chai.request(api)
@@ -58,6 +58,7 @@ describe('Fruits', () => {
         done();
       });
     });
+
     it('Should POST a fruit ', (done)=> {
       let fruit = {
         "itemName": "Cox Apples",
@@ -90,7 +91,7 @@ describe('Fruits', () => {
             res.body.fruit.should.have.property('createdAt');
             res.body.fruit.should.have.property('onSpecial');
           done();
-        });
+      });
     });
   });
 
@@ -163,28 +164,31 @@ describe('Fruits', () => {
     });
   });
 
+
   // DELETE a fruit route
-  describe('Delete a book given the id', (done) => {
-    let pineapple = new Fruit({
-      "itemName": "Pineapple",
-      "image": "http://image/of/an/pineapple.jpg",
-      "type": "Tropical Gold",
-      "price": 1.98,
-      "shortDescription": "Short description goes here",
-      "longDescription": "Long description goes here",
-      "quantityAvail": 34,
-      "packSize": "Single",
-      "taxRate": 0
-    });
-    pineapple.save((err, fruit) => {
-      console.log(`Fruit id: ${fruit.id}`);
-      chai.request(api)
-      .delete('/fruit/' + fruit.id)
-      .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          res.body.should.have.property('message').eql("Following fruit was destroyed: ");
-        done();
+  describe('/Delete/:id', (done) => {
+    it('It should delete a book given the :id', (done)=> {
+      let pineapple = new Fruit({
+        "itemName": "Pineapple",
+        "image": "http://image/of/an/pineapple.jpg",
+        "type": "Tropical Gold",
+        "price": 1.98,
+        "shortDescription": "Short description goes here",
+        "longDescription": "Long description goes here",
+        "quantityAvail": 34,
+        "packSize": "Single",
+        "taxRate": 0
+      });
+      pineapple.save((err, fruit) => {
+        console.log(`Fruit id: ${fruit.id}`);
+        chai.request(api)
+        .delete('/fruit/' + fruit.id)
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            // res.body.should.have.property('message').eql("Following fruit was destroyed: ");
+          done();
+        });
       });
     });
   });
