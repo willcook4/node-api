@@ -11,6 +11,9 @@ function getFruits(req, res) {
 }
 
 // POST Create - ('/fruit')
+
+// Need to add:
+// - Error handling codes for missing items, currently 200.
 function postFruit(req, res) {
   Fruit.create(req.body, (err, fruit) => {
     if(err) return res.send(err);
