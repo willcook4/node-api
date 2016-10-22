@@ -162,4 +162,30 @@ describe('Fruits', () => {
       });
     });
   });
+
+  // DELETE a fruit route
+  describe('Delete a book given the id', (done) => {
+    let pineapple = new Fruit({
+      "itemName": "Pineapple",
+      "image": "http://image/of/an/pineapple.jpg",
+      "type": "Tropical Gold",
+      "price": 1.98,
+      "shortDescription": "Short description goes here",
+      "longDescription": "Long description goes here",
+      "quantityAvail": 34,
+      "packSize": "Single",
+      "taxRate": 0
+    });
+    pineapple.save((err, fruit) => {
+      console.log(`Fruit id: ${fruit.id}`);
+      chai.request(api)
+      .delete('/fruit/' + fruit.id)
+      .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message').eql("Following fruit was destroyed: ");
+        done();
+      });
+    });
+  });
 });
